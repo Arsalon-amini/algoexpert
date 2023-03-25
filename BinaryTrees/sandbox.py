@@ -1,36 +1,21 @@
-# write a fn, takes in a BT and returns list of branch sums leftmost to rightmost
-# O(n) time | O(n) space
+# write a fn that takes a BT and returns sum of its node depths
+# O(n) time | o(h) where h = height of tree
 
+# sum = 9
 
-# fn_start (root) ~ kick off method
-# init sums []
-# fn(tree, currentSum, sums[]) ~ fn(root, 0, sums[])
+#    2 | d = 0
+#  3   5 | d = 1
+# 4 5  6 9 | d = 2
 
+# recursive
+# fn_recursive (root, depth)
+# base case ~ if node is none, return
+# sum_depths = depth + fn_recursive(root.left, depth + 1) + fn_recursive(root.right, dpeth + 1)
 
-# fn_rec (tree, currentSum, sums[])
+def node_depths(root, depth):
+    if root is None:
+        return 0
+    depth_sum = depth + \
+        node_depths(root.left, depth + 1) + node_depths(root.right, depth + 1)
 
-# stop (leaf node) ~ if Node is None: return
-# add to sums (parent to leaf) ~ add to sums ~ if Node.right is None and Node.left is None: sums.append(currentSum)
-
-# recursive calls ~
-# fn(tree.left, currentSum, sums[])
-# fn(tree.right, currentSum, sums[])
-
-def branch_sums(root):
-    sums = []
-    calc_branch_sums(root, 0, sums)
-    return sums
-
-
-def calc_branch_sums(node, current_running_sum, sums[]):
-    if node is None:
-        return
-
-    new_current_running_sum = node.value + current_running_sum
-
-    if node.left is None and node.right is None:
-        sums.append(new_current_running_sum)
-        return 
-
-    calc_branch_sums(node.left, new_current_running_sum, sums)
-    calc_branch_sums(node.right, new_current_running_sum, sums)
+    return depth_sum
