@@ -8,7 +8,7 @@ class BinaryTree:
 
 
 # O(n) time | O(h) space
-def calc_node_depth_recursively(root, depth):
+def calc_node_depth_recursively(root, depth=0):
     if root is None:
         return 0
 

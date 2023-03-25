@@ -11,4 +11,4 @@ root.right = BinaryTree(3)
 root.right.left = BinaryTree(6)
 root.right.right = BinaryTree(7)
 
-print(calc_depth(root))
+print(invert_tree(root))

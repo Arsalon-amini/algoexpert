@@ -1,4 +1,6 @@
-# scope ~ takes in a binary tree and returns a list of its branch sums ordered leftomost branch sum to rightmost branch sum
+# take in a binary tree and returns a list of its branch sums ordered leftomost branch sum to rightmost branch sum
+# O(n) time ~ traversing every node, only doing O(1) calculations at each node
+# O(n) space ~ recursive call stack 
 
 class BinaryTree:
     def __init__(self, value):
@@ -17,6 +19,7 @@ def calculate_branch_sums(node, running_sum, sums):
         return
     
     new_running_sum = running_sum + node.value 
+    
     if node.left is None and node.right is None:
         sums.append(new_running_sum)
         return
