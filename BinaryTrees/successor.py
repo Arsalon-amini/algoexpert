@@ -10,9 +10,10 @@ class Node:
 
 # O(n) time | O(n) space
 # In-order traversal (left, visit, right)
-#    4
-#   3  5
-# 2
+#     1
+#   2   3
+#  4 5
+# 6
 
 
 def find_successor(root, target_node):
@@ -36,6 +37,32 @@ def in_order_traversal(node, node_list=[]):
     in_order_traversal(node.right, node_list)
 
     return node_list
+
+
+# O(h) time | O(1) space where h = height of tree 
+#      1
+#    2    3
+#  4   5
+# 6
+def find_successor_optimal(tree, target_node):
+    if target_node.right is not None:
+        return get_left_most_node(target_node.right)
+    
+    return get_parent(target_node) 
+     
+def get_left_most_node(node):
+    while node is not None:
+        current_node = node.left 
+        
+    return current_node
+
+def get_parent(node):
+    current_node = node
+    while current_node.parent is not None and current_node.parent.right == current_node:
+         current_node = node.parent
+    return current_node.parent
+    
+        
 
 
 def construct_tree():
