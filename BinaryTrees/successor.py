@@ -51,8 +51,9 @@ def find_successor_optimal(tree, target_node):
     return get_parent(target_node) 
      
 def get_left_most_node(node):
-    while node is not None:
-        current_node = node.left 
+    current_node = node
+    while current_node.left is not None:
+        current_node = current_node.left 
         
     return current_node
 
