@@ -3,6 +3,8 @@
 Result: took 25 minutes, I needed help on edge cases (if nodes are null), in end, I am still confused on what happens
 on call stack when tree_one is None and we "return tree_two" 
 how does that get appended (mutate) tree_one so that when we return tree_one the node is linked
+ANSWER: I thought about it and realized we're setting tree_one.left = recursivefn(tree_one.left, tree_two.left) 
+so if we return tree_two it will get assigned as the tree_one.left = tree_two_node on that line
 """
 
 # tree_one =
