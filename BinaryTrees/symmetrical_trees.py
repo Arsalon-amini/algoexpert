@@ -32,17 +32,10 @@ def symm_trees(root):
         right_subtree_node = right_stack.pop()
         left_subtree_node = left_stack.pop()
 
-        if right_subtree_node != left_subtree_node:
-            return False
-
-        # edge cases 
-        # a) no children (left/right are null)
-        # b) one child (right is null)
-        # c) one child (left is null)
         if left_subtree_node is None and right_subtree_node is None:
             continue
         
-        if left_subtree_node is None or right_subtree_node is None or left_subtree_node != right_subtree_node:
+        if left_subtree_node is None or right_subtree_node is None or left_subtree_node.value != right_subtree_node.value:
             return False 
         
         
@@ -50,6 +43,8 @@ def symm_trees(root):
         right_stack.append(right_subtree_node.left)
         left_stack.append(left_subtree_node.left)
         left_stack.append(left_subtree_node.right)
+        
+    return True
 
 # left_stack [564] 
 # right_stack [564]
