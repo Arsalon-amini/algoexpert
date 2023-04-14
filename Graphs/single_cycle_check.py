@@ -14,12 +14,15 @@ starting at any index in the array and following the jumps, every element in the
 input = [2, 3, 1, -4, -4, 2]
 
                             ^ 
-startIdx = 0
-pointerIdx = 0 | each element, it moves forward or backward based on integer value 
-does (pointerIdx === startingIdx) & counter = len(input) ? return true | return false
-counter = 0 | each move increments +1
 
 O(n) time | O(1) space where n represents number of elements in input
+
+[-23, 3, 4, 2, 1]
+  ^
+current_idx = 1
+next_idx = (1 + (-23)) % 5 = -22 % 5 = -2
+if (next_idx) < 0 (negative) -> add len(array) -> positive idx equivalent
+positive_equiv = -2 + 5 = 3 (wrapped around)
 '''
 
 
