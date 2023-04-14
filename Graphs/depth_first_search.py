@@ -6,12 +6,13 @@ and returns the array
 
 graph = 
 
-        A
-    B   C    D
-  E   F    G  H
-     I  J    K
+         A
+    B    C    D
+  E   F      G  H
+     I  J   K
     
 '''
+# DFS_output =  [A, B, E, F, I, J, C, D, G, K, H]
 
 # O(v+e) time where e is edges and v is vertices 
 class Node:
