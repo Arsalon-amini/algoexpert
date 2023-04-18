@@ -57,7 +57,47 @@ def is_node_in_cycle(edges, node, visited, currently_in_stack):
         
         
 '''
-Soln #2 ~ use one aux data structure (0 = not visited, 1 = visiting, 2 = completed (no further edges))
+Soln #2 ~ use one aux data structure 
+WHITE: 0 = not visited
+GREY: 1 = visiting (inStack)
+BLACK: 2 = completed (no further edges, not in stack)
+
 O(v + e) time 
 O(v) space where v is no of vertices in graph
 '''
+
+WHITE, GREY, BLACK = 0, 1, 2
+
+def colored_cycle_in_graph(edges):
+    num_nodes = len(edges)
+    
+    colors = [False for _ in range(num_nodes)]
+    
+    for node in range(num_nodes):
+        if colors[node] != WHITE:
+            continue
+        
+        contains_cycle = traverse_and_color_nodes(node, edges, colors)
+        if contains_cycle:
+            return True
+        
+    return False
+
+def traverse_and_color_nodes(node, edges, colors): 
+    colors[node] = GREY
+    neighbors = edges[node]
+    
+    for neighbor in neighbors:
+        neighbor_color = colors[neighbor]
+        if neighbor_color == BLACK:
+            continue
+        if neighbor_color == GREY:
+            return True 
+        
+        contains_cycle = traverse_and_color_nodes(neighbor, edges, colors)
+        
+        if contains_cycle:
+            return True
+    
+    colors[node] = BLACK
+    return False 
