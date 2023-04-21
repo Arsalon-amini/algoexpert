@@ -43,7 +43,6 @@ def is_node_in_cycle(edges, node, visited, currently_in_stack):
     currently_in_stack[node] = True
     
     neighbors = edges[node] 
-    
     for neighbor in neighbors:
         if not visited[neighbor]:
             contains_cycle = is_node_in_cycle(edges, neighbor, visited, currently_in_stack)
@@ -85,14 +84,15 @@ def colored_cycle_in_graph(edges):
 
 def traverse_and_color_nodes(node, edges, colors): 
     colors[node] = GREY
-    neighbors = edges[node]
     
+    neighbors = edges[node]
     for neighbor in neighbors:
         neighbor_color = colors[neighbor]
-        if neighbor_color == BLACK:
-            continue
+        
         if neighbor_color == GREY:
             return True 
+        if neighbor_color == BLACK:
+            continue
         
         contains_cycle = traverse_and_color_nodes(neighbor, edges, colors)
         
