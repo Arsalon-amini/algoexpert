@@ -88,11 +88,3 @@ def get_neighbors(i, j, matrix, visited):
     return neighbors
 
 
-matrix = [
-    [1, 0, 0, 1, 0],
-    [1, 0, 1, 0, 0],
-    [0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0]
-]
-
-river_sizes(matrix)

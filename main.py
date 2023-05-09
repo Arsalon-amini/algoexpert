@@ -1,14 +1,19 @@
-from BinaryTrees import *
+from LinkedLists import *
 
-root = BinaryTree(1)
-root.left = BinaryTree(2)
-root.left.left = BinaryTree(4)
-root.left.right = BinaryTree(5)
-root.left.left.left = BinaryTree(8)
-root.left.left.right = BinaryTree(9)
 
-root.right = BinaryTree(3)
-root.right.left = BinaryTree(6)
-root.right.right = BinaryTree(7)
+sixth_node = LinkedList(5)
+fifth_node = LinkedList(4)
+fourth_node = LinkedList(4)
+third_node = LinkedList(3)
+second_node = LinkedList(1)
+head = LinkedList(1)
 
-print(invert_tree(root))
+head.next = second_node
+second_node.next = third_node
+third_node.next = fourth_node
+fourth_node.next = fifth_node
+fifth_node.next = sixth_node
+
+
+new_head = remove_duplicates(head)
+print(new_head)

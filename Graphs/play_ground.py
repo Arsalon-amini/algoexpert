@@ -1,57 +1,72 @@
-# import breadth_first_search
-
-# graph = breadth_first_search.Node('A')
-# graph.add_child('B').add_child('C').add_child('D')
-# graph.children[0].add_child('E').add_child('F')
-# graph.children[0].children[1].add_child('I').add_child('J')
-# graph.children[2].add_child('G').add_child('H')
-# graph.children[2].children[1].add_child('K')
-
-# array = []
-# bfs_result = graph.breadth_first_search(array)
-# print(bfs_result)
-
-edges = [
-    [1, 2],
-    [3],
-    [],
-    [4, 2],
-    []
+matrix = [
+    [1, 0, 0, 1, 0],
+    [1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 0]
 ]
 
-WHITE, GREY, BLACK = 0, 1, 2
+
+#### PLAYGROUND #####
+def riverSizes(matrix):
+    river_sizes = []
+    visited = [[False for value in matrix_row] for matrix_row in matrix]
+    for row in range(len(matrix)):
+        for column in range(len(matrix[row])):
+            if visited[row][column]:
+                continue
+            traverse_matrix(visited, river_sizes, row, column, matrix)
+    return river_sizes
 
 
-def cycle_in_graph(edges):
-    colors = [WHITE for _ in range(len(edges))]
-    num_nodes = len(edges)
+def traverse_matrix(visited, river_sizes, row, column, matrix):
+    nodes_to_explore = [[row, column]]
+    current_river = 0
 
-    for node in range(num_nodes):
-        if colors[node] == BLACK:
+    while len(nodes_to_explore) > 0:
+        current_node = nodes_to_explore.pop()
+
+        row_idx = current_node[0]
+        column_idx = current_node[1]
+
+        if visited[row_idx][column_idx] == True:
+            continue
+        visited[row_idx][column_idx] = True
+
+        if matrix[row_idx][column_idx] == 0:
             continue
 
-        has_cycle = dfs_and_color(edges, node, colors)
-        if has_cycle:
-            return True
-        return False
+        current_river += 1
+
+        unvisited_neighbors = get_unvisited_neighbors(
+            visited, matrix, row_idx, column_idx)
+
+        for neighbor in unvisited_neighbors:
+            nodes_to_explore.append(neighbor)
+
+    if current_river > 0:
+        river_sizes.append(current_river)
 
 
-def dfs_and_color(edges, node, colors):
-    colors[node] = GREY
-    node_neighbors = edges[node]
-    for neighbor in node_neighbors:
-        neighbor_color = colors[neighbor]
+def get_unvisited_neighbors(visited, matrix, row, column):
+    unvisited_neighbors = []
 
-        if neighbor_color == BLACK:
-            continue
-        if neighbor_color == GREY:
-            return True
+    # condition (not in top row)
+    if row > 0 and not visited[row - 1, column]:
+        unvisited_neighbors.append([row - 1, column])
 
-        has_cycle = dfs_and_color(edges, neighbor, colors)
-        if has_cycle:
-            return True
+    # condition (not in bottom row)
+    if row < len(matrix) and not visited[row + 1][column]:
+        unvisited_neighbors.append([row + 1, column])
 
-    return False
+    # condition(not in first column)
+    if column > 0 and not visited[row][column-1]:
+        unvisited_neighbors.append([row, column - 1])
+
+    # condition (not in last column)
+    if column < len(matrix[0]) - 1 and not visited[row][column + 1]:
+        unvisited_neighbors.append([row, column + 1])
+
+    return unvisited_neighbors
 
 
-cycle_in_graph(edges)
+riverSizes(matrix)
