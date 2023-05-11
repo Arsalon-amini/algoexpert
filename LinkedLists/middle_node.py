@@ -12,18 +12,17 @@ O(n) time
 O(1) space
 '''
 
+
 def get_middle_node(linkedList):
     count = 0
     current_node = linkedList
-    
+
     while current_node is not None:
         count += 1
         current_node = current_node.next
-        
-        middle_node = linkedList
-        for _ in range(count // 2):
-            middle_node = middle_node.next 
-        
+
+    middle_node = linkedList
+    for _ in range(count // 2):
+        middle_node = middle_node.next
+
     return middle_node
-        
-        
