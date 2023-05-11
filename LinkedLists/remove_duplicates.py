@@ -16,23 +16,22 @@ class LinkedList:
         self.next = None
 
 # Input: 1 -> 1 -> 3 -> 4 -> 4 -> 5 -> 6 -> 6
-#CN                     ^
-#NDN                              ^^
+# CN                     ^
+# NDN                              ^^
 # current_node = ^
 # next_distinct_node = ^^
 
 
 def remove_duplicates(head):
     current_node = head
-   
+
     while current_node is not None:
         next_distinct_node = current_node.next
         while next_distinct_node is not None and next_distinct_node.value == current_node.value:
             next_distinct_node = next_distinct_node.next
-        
-        current_node.next = next_distinct_node  
-        current_node = next_distinct_node 
-         
+
+        current_node.next = next_distinct_node
+        current_node = next_distinct_node
 
     return head
 

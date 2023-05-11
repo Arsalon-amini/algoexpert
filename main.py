@@ -15,5 +15,5 @@ fourth_node.next = fifth_node
 fifth_node.next = sixth_node
 
 
-new_head = remove_duplicates(head)
-print(new_head)
+middle = get_middle_node(head)
+print(middle)
